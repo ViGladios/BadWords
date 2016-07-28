@@ -1,0 +1,4 @@
+name: BadWords
+main: BadWords\Main
+api: 2.0.0
+author: MrDoni98
