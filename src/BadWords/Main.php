@@ -47,18 +47,14 @@ class Main extends PluginBase implements Listener{
 		
 		foreach($words as $word){
 		    $pos = strpos($msg, $word);
-			if($pos === false){
-				
-           }else{
+			if($pos !== false){
 			   $player->sendMessage(F::RED."Нецензурная брань!");
 		   }
 		}
 		
 		foreach($words2 as $word){
 		    $pos = strpos($msg, $word);
-			if($pos === false){
-				
-           }else{
+			if($pos !== false){
 			   $player->kick(F::RED."Прекрати попрошайничать");
                $event-setCancelled();
 		   }
