@@ -13,11 +13,11 @@ class Main extends PluginBase implements Listener{
 
     public function onChat(PlayerChatEvent $event){
 		
-		$player = $event->getPlayer();
-		$message = $event->getMessage();
-		$msg = mb_strtolower($message);
+        $player = $event->getPlayer();
+	$message = $event->getMessage();
+	$msg = mb_strtolower($message);
 		
-	    $words = array(
+	$words = array(
           'дибил',
           'сука',
           'хуй',
@@ -26,8 +26,8 @@ class Main extends PluginBase implements Listener{
           'блять',
           'бля',
           'ебать',
-		  'пиздец',
-		  'дурак'
+          'пиздец',
+	  'дурак'
         );
 
         $words2 = array(
@@ -45,19 +45,19 @@ class Main extends PluginBase implements Listener{
 		
 		
 		
-		foreach($words as $word){
-		    $pos = strpos($msg, $word);
-			if($pos !== false){
-			   $player->sendMessage(F::RED."Нецензурная брань!");
-		   }
-		}
+	foreach($words as $word){
+	    $pos = strpos($msg, $word);
+	    if($pos !== false){
+		$player->sendMessage(F::RED."Нецензурная брань!");
+	    }
+	}
 		
-		foreach($words2 as $word){
-		    $pos = strpos($msg, $word);
-			if($pos !== false){
-			   $player->kick(F::RED."Прекрати попрошайничать");
-               $event-setCancelled();
-		   }
-		}
+	foreach($words2 as $word){
+	    $pos = strpos($msg, $word);
+	    if($pos !== false){
+		$player->kick(F::RED."Прекрати попрошайничать");
+                $event-setCancelled();
+	    }
+	}
     }
 }
