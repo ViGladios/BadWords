@@ -3,6 +3,7 @@
 namespace BadWords;
 
 use pocketmine\plugin\PluginBase;
+use pocketmine\Server;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat as F;
 use pocketmine\event\player\PlayerChatEvent;
@@ -10,7 +11,12 @@ use pocketmine\Player;
 
 class Main extends PluginBase implements Listener{
 
-    public function onChat(PlayerChatEvent $ev){
+    public function onChat(PlayerChatEvent $event){
+		
+		$player = $event->getPlayer();
+		$message = $event->getMessage();
+		$msg = mb_strtolower($message);
+		
 	    $words = array(
           'дибил',
           'сука',
@@ -19,7 +25,9 @@ class Main extends PluginBase implements Listener{
           'пизда',
           'блять',
           'бля',
-          'ебать'
+          'ебать',
+		  'пиздец',
+		  'дурак'
         );
 
         $words2 = array(
@@ -33,15 +41,27 @@ class Main extends PluginBase implements Listener{
           'дай креат',
           'дай модерку',
           'можно быть модератором'
-        );
-
-       if(strpos($words, strtolower($ev->getMessage()))){
-          $ev->getPlayer()->sendMessage(F::RED."Нецензурная брань!");
-  	      $ev->setCancelled();
-       }
-       if(strpos($words2, strtolower($ev->getMessage()))){
-           $ev->getPlayer->kick(F::RED."Прекрати попрошайничать");
-           $ev-setCancelled();
-       }
+        );	
+		
+		
+		
+		foreach($words as $word){
+		    $pos = strpos($msg, $word);
+			if($pos === false){
+				
+           }else{
+			   $player->sendMessage(F::RED."Нецензурная брань!");
+		   }
+		}
+		
+		foreach($words2 as $word){
+		    $pos = strpos($msg, $word);
+			if($pos === false){
+				
+           }else{
+			   $player->kick(F::RED."Прекрати попрошайничать");
+               $event-setCancelled();
+		   }
+		}
     }
 }
