@@ -49,7 +49,7 @@ class Main extends PluginBase implements Listener{
 	    $pos = strpos($msg, $word);
 	    if($pos != false){
 		$player->sendMessage(F::RED."Нецензурная брань!");
-		$event-setCancelled();
+		$event->setCancelled();
 	    }
 	}
 		
@@ -57,7 +57,7 @@ class Main extends PluginBase implements Listener{
 	    $pos = strpos($msg, $word);
 	    if($pos != false){
 		$player->kick(F::RED."Прекрати попрошайничать");
-                $event-setCancelled();
+                $event->setCancelled();
 	    }
 	}
     }
