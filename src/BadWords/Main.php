@@ -10,6 +10,10 @@ use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\Player;
 
 class Main extends PluginBase implements Listener{
+	
+    public function onEnable() {
+	$this->getServer()->getPluginManager()->registerEvents($this, $this);
+    }
 
     public function onChat(PlayerChatEvent $event){
 		
@@ -46,7 +50,7 @@ class Main extends PluginBase implements Listener{
 		
 		
 	foreach($words as $word){
-	    $pos = strpos($word, strtolower($message));
+	    $pos = strpos(strtolower($message), $word);
 	    if($pos != false){
 		$player->sendMessage(F::RED."Нецензурная брань!");
 		$event->setCancelled();
@@ -54,10 +58,10 @@ class Main extends PluginBase implements Listener{
 	}
 		
 	foreach($words2 as $word2){
-	    $pos = strpos($word2, strtolower($message));
+	    $pos = strpos(strtolower($message), $word2);
 	    if($pos != false){
+	    	$event->setCancelled();
 		$player->kick(F::RED."Прекрати попрошайничать");
-                $event->setCancelled();
 	    }
 	}
     }
