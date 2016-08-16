@@ -74,18 +74,22 @@ class Main extends PluginBase implements Listener{
 	foreach($words as $word){
 	    $pos = strpos(mb_strtolower($message), $word);
 	    if($pos !== false){
-		$player->sendMessage(F::RED."Нецензурная брань!");
-		$event->setCancelled();
-		break;
+	    	if(!$player->hasPermissions("badwords")){
+		   $player->sendMessage(F::RED."Нецензурная брань!");
+		   $event->setCancelled();
+		   break;
+	        }
 	    }
 	}
 		
 	foreach($words2 as $word2){
 	    $pos = strpos(mb_strtolower($message), $word2);
 	    if($pos !== false){
-	    	$event->setCancelled();
-		$player->kick(F::RED."Прекрати попрошайничать");
-		break;
+	    	if(!$player->hasPermissions("badwords")){
+	    	   $event->setCancelled();
+		   $player->kick(F::RED."Прекрати попрошайничать");
+		   break;
+	    	}
 	    }
 	}
     }
